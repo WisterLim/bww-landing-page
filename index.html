@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beecoming Whole Works | Founder Transformation</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #F4EFE6;
+            --bg-secondary: #EBE4D5;
+            --bg-tint: #FBF8F2;
+            --text-primary: #5C4D26;
+            --text-soft: #7A6B45;
+            --accent-gold: #8B7335;
+            --accent-gold-deep: #6E5726;
+            --accent-hover: #A68A42;
+            --accent-highlight: #B5622E;
+            --white: #FFFFFF;
+            --line: rgba(139,115,53,0.15);
+
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Lato', sans-serif;
+
+            --measure: 680px;
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 22px;
+            --shadow-sm: 0 2px 12px rgba(92,77,38,0.06);
+            --shadow-md: 0 12px 32px rgba(92,77,38,0.09);
+            --shadow-lg: 0 22px 55px rgba(92,77,38,0.14);
+            --ease: cubic-bezier(.25,.1,.25,1);
+            --space-xl: clamp(64px, 9vw, 120px);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.65;
+            overflow-x: hidden;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection { background: rgba(181,98,46,0.18); color: var(--accent-gold-deep); }
+
+        /* Skip link — keyboard accessibility */
+        .skip-link {
+            position: absolute; left: -999px; top: auto;
+            background: var(--accent-gold); color: #fff; padding: 12px 20px;
+            border-radius: var(--radius-sm); z-index: 2000; text-decoration: none;
+            font-weight: 700; font-size: 0.9rem;
+        }
+        .skip-link:focus { left: 20px; top: 20px; }
+
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--accent-highlight); outline-offset: 3px; border-radius: 4px;
+        }
+
+        /* Accent words — sparing, deliberate emphasis */
+        .highlight { color: var(--accent-highlight); font-style: italic; font-weight: 600; }
+        h1 .highlight, .hero-content .highlight { font-weight: 700; }
+        .emph { color: var(--accent-gold-deep); font-weight: 700; font-style: normal; }
+        .lead-in { font-weight: 700; color: var(--accent-gold-deep); margin-bottom: 0.7rem; }
+        .lead-in.spaced { margin-top: 1.6rem; }
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+        }
+
+        /* Orphan-word control, site-wide */
+        h1, h2, h3, .eyebrow, .section-title, .pathway-hook, .rr-title { text-wrap: balance; }
+        p, li { text-wrap: pretty; }
+
+        /* ---------- Ambient background: soft mesh + gentle glow, no motifs ---------- */
+        .bg-animation {
+            position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden;
+        }
+        .blob {
+            position: absolute; filter: blur(90px); will-change: transform;
+            animation: driftBlob 60s infinite ease-in-out;
+        }
+        .blob-a {
+            width: 46vw; height: 46vw; top: -14vw; left: -12vw;
+            background: radial-gradient(circle, rgba(139,115,53,0.20), transparent 72%);
+            border-radius: 42% 58% 63% 37% / 47% 44% 56% 53%;
+        }
+        .blob-b {
+            width: 40vw; height: 40vw; bottom: -16vw; right: -10vw;
+            background: radial-gradient(circle, rgba(181,98,46,0.11), transparent 72%);
+            border-radius: 55% 45% 40% 60% / 50% 55% 45% 50%;
+            animation-duration: 74s; animation-delay: -18s;
+        }
+        .blob-c {
+            width: 30vw; height: 30vw; top: 38%; right: 8%;
+            background: radial-gradient(circle, rgba(139,115,53,0.12), transparent 72%);
+            border-radius: 50% 50% 55% 45% / 45% 55% 45% 55%;
+            animation-duration: 50s; animation-delay: -30s;
+        }
+        @keyframes driftBlob {
+            0%, 100% { transform: translate(0,0) scale(1) rotate(0deg); }
+            50% { transform: translate(2.5%, -3%) scale(1.06) rotate(6deg); }
+        }
+
+        /* Very light grain for a handcrafted, non-flat surface */
+        .noise-overlay {
+            position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            opacity: 0.03; mix-blend-mode: multiply;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important; scroll-behavior: auto !important;
+            }
+        }
+
+        /* ---------- Header ---------- */
+        header {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(244, 239, 230, 0.92);
+            backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--line);
+            transition: box-shadow 0.3s var(--ease);
+        }
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo-img {
+            width: 56px; height: 56px; border-radius: 50%; object-fit: cover;
+            background: var(--bg-secondary); border: 2px solid var(--accent-gold);
+        }
+        .logo-text {
+            font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700;
+            color: var(--accent-gold-deep); letter-spacing: 0.5px;
+        }
+        nav ul { display: flex; list-style: none; gap: 1.7rem; flex-wrap: wrap; align-items: center; }
+        nav a {
+            text-decoration: none; color: var(--text-primary); font-weight: 400;
+            font-size: 0.93rem; transition: color 0.25s var(--ease); position: relative; white-space: nowrap;
+        }
+        nav a::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: -6px; left: 0;
+            background-color: var(--accent-highlight); transition: width 0.3s var(--ease);
+        }
+        nav a:hover { color: var(--accent-gold-deep); }
+        nav a:hover::after { width: 100%; }
+        .menu-toggle {
+            display: none; font-size: 1.4rem; cursor: pointer; color: var(--accent-gold);
+            background: none; border: none; padding: 6px; line-height: 1;
+        }
+
+        /* ---------- Hero ---------- */
+        #home {
+            min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 130px 5% 70px; position: relative;
+        }
+        .hero-content { max-width: 800px; z-index: 1; position: relative; }
+        .hero-logo { width: 108px; height: 108px; border-radius: 50%; margin-bottom: 2rem; box-shadow: var(--shadow-md); }
+        .eyebrow {
+            display: block; font-family: var(--font-body); font-size: clamp(0.72rem, 1.4vw, 0.85rem);
+            letter-spacing: clamp(1px, 0.22vw, 1.8px); font-weight: 700; color: var(--accent-gold-deep);
+            margin-bottom: 1.3rem; text-transform: uppercase;
+        }
+        h1 {
+            font-family: var(--font-heading); font-size: clamp(2.4rem, 4.2vw, 3.3rem); color: var(--accent-gold);
+            margin-bottom: 1.6rem; line-height: 1.24; font-weight: 700; position: relative;
+        }
+        .hero-subtitle {
+            font-size: 1.14rem; margin: 0 auto 1.3rem; color: var(--text-primary); font-weight: 300;
+            max-width: 620px;
+        }
+        .hero-subtitle.emphasis { font-weight: 400; color: var(--text-soft); font-size: 1.03rem; }
+
+        /* ---------- Buttons ---------- */
+        .cta-button {
+            display: inline-block; padding: 15px 38px; background-color: var(--accent-gold);
+            color: var(--white); text-decoration: none; border-radius: 50px; font-weight: 700;
+            font-size: 1.02rem; letter-spacing: 0.2px;
+            transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background-color 0.3s var(--ease), color 0.3s var(--ease);
+            box-shadow: var(--shadow-sm); border: 2px solid var(--accent-gold);
+            margin-top: 1.6rem;
+        }
+        .cta-button:hover {
+            background-color: var(--accent-hover); border-color: var(--accent-hover);
+            transform: translateY(-2px) scale(1.015);
+            box-shadow: var(--shadow-md);
+        }
+        .cta-button:active { transform: translateY(0) scale(0.99); }
+        .cta-button.outline {
+            background-color: transparent; color: var(--accent-gold-deep);
+            box-shadow: none;
+        }
+        .cta-button.outline:hover {
+            background-color: var(--accent-gold); color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+        /* Pending-destination CTAs: functional but visibly inactive until a confirmed URL
+           is supplied (see "MISSING CLIENT INFORMATION" comments in the HTML). Prevents a
+           dead link from appearing indistinguishable from a live one during review. */
+        .cta-button[data-status="pending-approval"] {
+            opacity: 0.72; cursor: not-allowed;
+        }
+        .cta-button[data-status="pending-approval"]:hover {
+            transform: none; box-shadow: var(--shadow-sm);
+        }
+
+        /* ---------- Section shell ---------- */
+        section { padding: var(--space-xl) 5%; max-width: 1100px; margin: 0 auto; }
+        .divider-top { position: relative; }
+        .divider-top::before {
+            content: ''; display: block; width: 160px; height: 1px; margin: 0 auto 3.2rem;
+            background: linear-gradient(90deg, transparent, rgba(139,115,53,0.4), transparent);
+        }
+        .section-title {
+            font-family: var(--font-heading); font-size: clamp(1.9rem, 3vw, 2.35rem); color: var(--accent-gold);
+            text-align: center; margin-bottom: 1.1rem; font-weight: 700; line-height: 1.25;
+        }
+        .section-title::after {
+            content: ''; display: block; width: 48px; height: 2px;
+            background: var(--accent-highlight); margin: 18px auto 0;
+        }
+        .section-lede {
+            text-align: center; max-width: var(--measure); margin: 0 auto 3rem;
+            font-size: 1.05rem; color: var(--text-soft);
+        }
+
+        /* ---------- Recognition ---------- */
+        #recognition {
+            background-color: var(--bg-secondary); border-radius: var(--radius-lg);
+            margin: 40px 5%; max-width: none; box-shadow: var(--shadow-sm);
+        }
+        .recognition-intro { max-width: var(--measure); margin: 0 auto 2.3rem; text-align: center; }
+        .recognition-intro p:first-child { font-size: 1.22rem; margin-bottom: 0.7rem; color: var(--accent-gold-deep); font-weight: 400; }
+        .recognition-intro p { font-size: 1.08rem; margin-bottom: 0.6rem; }
+        .recognition-list { max-width: 640px; margin: 0 auto 2.3rem; list-style: none; }
+        .recognition-list li {
+            position: relative; padding: 0.85rem 0 0.85rem 32px; font-size: 1.03rem;
+            border-bottom: 1px solid var(--line);
+            transition: padding-left 0.3s var(--ease), color 0.3s var(--ease);
+        }
+        .recognition-list li:hover { padding-left: 38px; color: var(--accent-gold-deep); }
+        .recognition-list li:last-child { border-bottom: none; }
+        .recognition-list li::before {
+            content: '●'; position: absolute; left: 0; top: 0.95rem;
+            color: var(--accent-highlight); font-size: 0.55rem;
+        }
+        .recognition-close { max-width: var(--measure); margin: 0 auto; text-align: center; }
+        .recognition-close p { font-size: 1.05rem; margin-bottom: 1rem; }
+        .recognition-close p:last-child { font-weight: 400; color: var(--accent-gold-deep); }
+
+        /* ---------- Choice / Pathways ---------- */
+        #choice { text-align: center; }
+        .pathway-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 2.2rem; margin-top: 2.6rem; text-align: left;
+        }
+        .pathway-card {
+            background: var(--bg-secondary); border-radius: var(--radius-lg); padding: 2.3rem;
+            border-top: 4px solid var(--accent-gold);
+            display: flex; flex-direction: column;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.4s var(--ease), transform 0.4s var(--ease);
+        }
+        .pathway-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+        .pathway-eyebrow {
+            font-size: 0.83rem; font-weight: 700; letter-spacing: 1.4px; color: var(--accent-gold-deep);
+            text-transform: uppercase; margin-bottom: 0.5rem;
+        }
+        .pathway-label {
+            display: block; font-family: var(--font-body); font-weight: 700; font-size: 0.78rem;
+            letter-spacing: 1.8px; text-transform: uppercase; color: var(--accent-highlight);
+            margin-bottom: 1rem; padding-bottom: 0.7rem; border-bottom: 1px solid var(--line);
+        }
+        .pathway-hook {
+            font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700;
+            color: var(--text-primary); margin-bottom: 1.1rem; line-height: 1.3;
+        }
+        .pathway-card p { font-size: 0.98rem; margin-bottom: 1rem; color: var(--text-soft); }
+        .resource-box {
+            background: var(--bg-tint); border: 1px solid var(--accent-gold);
+            border-radius: var(--radius-md); padding: 1.35rem 1.5rem; margin: 1.1rem 0 1.3rem;
+        }
+        .resource-box h4 {
+            font-family: var(--font-heading); color: var(--accent-gold-deep); font-size: 1.28rem; margin-bottom: 0.4rem; font-weight: 700;
+        }
+        .resource-box p { font-size: 0.92rem; font-style: italic; margin-bottom: 0; color: var(--text-soft); }
+        .pathway-list { list-style: none; margin-bottom: 1.6rem; }
+        .pathway-list li {
+            position: relative; padding-left: 22px; font-size: 0.93rem; margin-bottom: 0.6rem; color: var(--text-primary);
+        }
+        .pathway-list li::before {
+            content: '·'; position: absolute; left: 0; top: -3px; font-size: 1.4rem; color: var(--accent-highlight);
+        }
+        .pathway-card .cta-button { align-self: flex-start; margin-top: auto; padding: 13px 30px; font-size: 0.95rem; }
+
+        /* ---------- What Happens Next ---------- */
+        .steps-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 2.4rem 3.2rem;
+            margin: 2.8rem auto 0; max-width: 820px;
+        }
+        .step { text-align: left; padding-left: 1.1rem; border-left: 2px solid var(--line); }
+        .step-num {
+            font-family: var(--font-heading); font-size: 1.85rem; color: var(--accent-highlight);
+            font-weight: 700; margin-bottom: 0.35rem; display: block; line-height: 1;
+        }
+        .step h3 { font-family: var(--font-heading); font-size: 1.15rem; color: var(--text-primary); margin-bottom: 0.45rem; font-weight: 700; }
+        .step p { font-size: 0.92rem; color: var(--text-soft); }
+        @media (max-width: 700px) {
+            .steps-grid { grid-template-columns: 1fr; max-width: 480px; gap: 1.8rem; }
+        }
+
+        /* ---------- Philosophy ---------- */
+        #philosophy { text-align: center; }
+        .philosophy-content { max-width: 820px; margin: 0 auto; }
+        .philosophy-content p { font-size: 1.03rem; line-height: 1.7; margin-bottom: 1.2rem; }
+        .phi-lead { text-align: center; max-width: var(--measure); margin: 0 auto 1.7rem; font-size: 1.12rem; color: var(--text-soft); }
+        .phi-transition {
+            text-align: center; font-family: var(--font-heading); font-style: italic;
+            color: var(--accent-highlight); font-size: 1.25rem; max-width: 500px;
+            margin: 0 auto 2.1rem;
+        }
+        .phi-alt-left {
+            text-align: left; max-width: 60%; margin: 0 auto 1.35rem 0;
+            padding-left: 1.15rem; border-left: 3px solid var(--accent-gold);
+        }
+        .phi-alt-right {
+            text-align: right; max-width: 60%; margin: 0 0 1.35rem auto;
+            padding-right: 1.15rem; border-right: 3px solid var(--accent-highlight);
+        }
+        .phi-close { text-align: center; max-width: var(--measure); margin: 0 auto 1.1rem; color: var(--text-soft); }
+        .philosophy-triplet {
+            margin: 2.4rem 0; font-family: var(--font-heading); font-size: 1.38rem; color: var(--accent-gold-deep);
+            font-weight: 700;
+        }
+        .philosophy-triplet div { margin-bottom: 0.4rem; }
+        @media (max-width: 768px) {
+            .phi-alt-left, .phi-alt-right { max-width: 100%; text-align: left; margin: 0 0 1.25rem; padding-right: 0; border-right: none; padding-left: 1.1rem; border-left: 3px solid var(--accent-gold); }
+        }
+
+        /* ---------- About Noelle ---------- */
+        .about-grid {
+            display: grid; grid-template-columns: 280px 1fr; gap: 3.2rem; align-items: center;
+        }
+        .about-photo {
+            width: 100%; aspect-ratio: 1/1; border-radius: var(--radius-lg); background: var(--bg-secondary);
+            display: flex; align-items: center; justify-content: center;
+            border: 2px solid var(--accent-gold); color: var(--accent-gold-deep);
+            font-family: var(--font-heading); font-size: 1rem; text-align: center;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+        .about-text p { font-size: 1.03rem; margin-bottom: 1.15rem; color: var(--text-primary); }
+        .about-text p:first-child { font-size: 1.1rem; color: var(--accent-gold-deep); }
+        .about-signature {
+            margin-top: 1.6rem; font-family: var(--font-heading); font-size: 1.15rem;
+            color: var(--accent-gold); font-weight: 700;
+        }
+        .about-signature span { display: block; font-family: var(--font-body); font-size: 0.9rem; font-weight: 400; color: var(--text-soft); margin-top: 0.2rem; }
+
+        /* ---------- Reset & Rise ---------- */
+        #reset-rise {
+            background-color: var(--bg-secondary); border-radius: var(--radius-lg);
+            margin: 40px 5%; max-width: none; text-align: center; box-shadow: var(--shadow-sm);
+        }
+        .reset-rise-inner { max-width: 780px; margin: 0 auto; }
+        .reset-rise-inner p { font-size: 1.03rem; margin-bottom: 1.05rem; color: var(--text-primary); }
+        .reset-rise-cant { list-style: none; text-align: left; max-width: 560px; margin: 1.6rem auto; }
+        .reset-rise-cant li { position: relative; padding-left: 22px; font-size: 0.95rem; margin-bottom: 0.55rem; color: var(--text-soft); }
+        .reset-rise-cant li::before { content: '·'; position: absolute; left: 0; top: -3px; font-size: 1.4rem; color: var(--accent-highlight); }
+        .rr-title {
+            font-family: var(--font-heading); font-size: clamp(1.6rem, 2.6vw, 1.9rem); color: var(--accent-gold-deep);
+            margin: 2.2rem 0 1.1rem; font-weight: 700;
+        }
+        .reset-rise-list { list-style: none; text-align: left; max-width: 560px; margin: 1.6rem auto; }
+        .reset-rise-list li { position: relative; padding-left: 22px; font-size: 0.95rem; margin-bottom: 0.55rem; }
+        .reset-rise-list li::before { content: '●'; position: absolute; left: 0; top: 4px; font-size: 0.55rem; color: var(--accent-highlight); }
+
+        /* ---------- Complimentary consult ---------- */
+        #consult { text-align: center; }
+        .consult-box {
+            max-width: var(--measure); margin: 0 auto; background: var(--bg-tint);
+            border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 2.6rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .consult-box p { font-size: 1.03rem; margin-bottom: 1.05rem; }
+        .consult-list { list-style: none; text-align: left; max-width: 480px; margin: 1.3rem auto; }
+        .consult-list li { position: relative; padding-left: 22px; font-size: 0.95rem; margin-bottom: 0.55rem; color: var(--text-soft); }
+        .consult-list li::before { content: '·'; position: absolute; left: 0; top: -3px; font-size: 1.4rem; color: var(--accent-highlight); }
+        .consult-note { font-size: 0.85rem; color: var(--text-soft); margin-top: 0.9rem; }
+
+        /* ---------- Final agency choice ---------- */
+        #final { text-align: center; }
+        .final-inner { max-width: var(--measure); margin: 0 auto; }
+        .final-inner p { font-size: 1.1rem; margin-bottom: 0.6rem; color: var(--text-soft); }
+        .final-bold {
+            font-family: var(--font-heading); font-size: clamp(1.35rem, 2.4vw, 1.55rem); color: var(--accent-gold-deep);
+            margin: 1.3rem 0 2.1rem; font-weight: 700; line-height: 1.4;
+        }
+        .final-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 2.1rem; }
+        .final-buttons .cta-button { margin-top: 0; padding: 13px 28px; font-size: 0.95rem; }
+        .final-note { font-size: 0.95rem; max-width: 560px; margin: 0 auto; color: var(--text-soft); }
+
+        /* ---------- Footer ---------- */
+        footer {
+            background: var(--accent-gold);
+            color: #FFFFFF;
+            text-align: center;
+            padding: clamp(48px, 6vw, 72px) 5%;
+            margin-top: var(--space-xl);
+        }
+        footer .footer-logo {
+            font-family: var(--font-heading); font-size: 1.9rem; color: #FFFFFF;
+            margin-bottom: 0.7rem; display: block; font-weight: 700;
+        }
+        footer .footer-tagline { font-size: 1rem; margin-bottom: 1.6rem; opacity: 0.95; }
+        footer .footer-disclaimer {
+            max-width: 640px; margin: 0 auto 1.9rem; font-size: 0.85rem;
+            font-weight: 300; opacity: 0.92; line-height: 1.65;
+        }
+        footer .footer-links { font-size: 0.9rem; }
+        footer .footer-links a { color: #FFFFFF; text-decoration: none; opacity: 0.9; transition: opacity 0.25s var(--ease); }
+        footer .footer-links a:hover { opacity: 1; text-decoration: underline; }
+        footer .footer-copyright { margin-top: 1.6rem; font-size: 0.8rem; opacity: 0.78; }
+
+        /* ---------- Fade-in on scroll ---------- */
+        .fade-in { opacity: 0; transform: translateY(26px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ---------- Mobile ---------- */
+        @media (max-width: 900px) {
+            .pathway-grid { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-photo { max-width: 240px; margin: 0 auto; }
+        }
+        @media (max-width: 768px) {
+            .section-title { font-size: 1.9rem; }
+            nav ul {
+                display: none;
+            }
+            nav ul.nav-open {
+                display: flex; flex-direction: column; position: absolute; top: 68px; right: 5%;
+                background: var(--bg-primary); padding: 1.2rem 1.4rem; border-radius: var(--radius-md);
+                box-shadow: var(--shadow-md); gap: 1rem; border: 1px solid var(--line);
+            }
+            .menu-toggle { display: block; }
+            .hero-logo { width: 84px; height: 84px; }
+            section { padding: clamp(48px, 10vw, 72px) 5%; }
+            .final-buttons { flex-direction: column; align-items: stretch; gap: 1.1rem; }
+            .cta-button { width: 100%; text-align: center; padding: 15px 20px; }
+            .pathway-card .cta-button { width: auto; }
+            .logo-text { font-size: 1.15rem; }
+        }
+        @media (max-width: 400px) {
+            .logo-container { gap: 10px; }
+            .logo-img { width: 44px; height: 44px; }
+            .logo-text { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="#home" class="skip-link">Skip to content</a>
+
+    <div class="bg-animation" aria-hidden="true">
+        <div class="blob blob-a"></div>
+        <div class="blob blob-b"></div>
+        <div class="blob blob-c"></div>
+    </div>
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <header>
+        <div class="logo-container">
+            <img src="https://assets.cdn.filesafe.space/LroS441rLfF4CILbNn5o/media/6a6b17f71a6f7a5eaa0e3b51.png" alt="Beecoming Whole Works Logo" class="logo-img">
+            <span class="logo-text">BEECOMING WHOLE WORKS</span>
+        </div>
+        <nav>
+            <ul id="primary-nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#recognition">Recognition</a></li>
+                <li><a href="#choice">Get a Resource</a></li>
+                <li><a href="#about">About Noelle</a></li>
+                <li><a href="#reset-rise">Reset &amp; Rise</a></li>
+                <li><a href="#consult">Connect</a></li>
+            </ul>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">☰</button>
+        </nav>
+    </header>
+
+    <!-- SECTION 1: HERO -->
+    <section id="home">
+        <div class="hero-content fade-in">
+            <img src="https://assets.cdn.filesafe.space/LroS441rLfF4CILbNn5o/media/6a6b17f71a6f7a5eaa0e3b51.png" alt="Beecoming Whole Works Logo" class="hero-logo">
+            <span class="eyebrow">For Founders and Business Owners Who Are Done Paying for Success With Themselves</span>
+            <h1>You built the business to create <span class="highlight">freedom.</span><br>It should not cost you your health or your life.</h1>
+            <p class="hero-subtitle">
+                Beecoming Whole Works partners with founders and business owners to optimize the brain and body, strengthen the way the business operates, and create more freedom inside the business&mdash;so they can scale sustainably, <span class="emph">protect their health</span>, and enjoy more of the life they worked so hard to build.
+            </p>
+            <p class="hero-subtitle emphasis">
+                This is not another productivity system asking you to push harder. It is a different way of changing how you think, operate, lead, recover, decide, and carry the business.
+            </p>
+            <a href="#choice" class="cta-button">Start With What Feels Heaviest Right Now</a>
+        </div>
+    </section>
+
+    <!-- SECTION 2: RECOGNITION -->
+    <section id="recognition" class="fade-in">
+        <h2 class="section-title">Recognition</h2>
+        <div class="recognition-intro">
+            <p>The business may be working.<br>But the way you have had to carry it may no longer be working for you.</p>
+            <p>You may still be producing, leading, solving problems, responding to everyone, and keeping the business moving.</p>
+            <p>But behind the results, you may also be:</p>
+        </div>
+        <ul class="recognition-list">
+            <li>carrying too many decisions at once</li>
+            <li>struggling to switch off when the workday ends</li>
+            <li>reacting to ordinary business changes like they are emergencies</li>
+            <li>freezing when a task feels heavier than it should</li>
+            <li>overfunctioning because it feels easier than trusting someone else</li>
+            <li>losing energy, clarity, health, or parts of your life to keep everything going</li>
+            <li>knowing another strategy is not enough, but not yet knowing what needs to change</li>
+        </ul>
+        <div class="recognition-close">
+            <p>None of this automatically means you are incapable, undisciplined, or bad at business.</p>
+            <p>It may mean the way your brain, body, habits, responsibilities, and business systems learned to survive success now needs to evolve.</p>
+            <p>You do not need to solve everything today. Start with the type of support that would be most useful in this moment.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 3: LOWEST-EFFORT MEANINGFUL CHOICE -->
+    <section id="choice" class="fade-in divider-top">
+        <h2 class="section-title">Where does the business feel heaviest right now?</h2>
+        <p class="section-lede">
+            Choose the option that feels closest to your current experience. Each pathway does a different job and gives you a different resource.<br><br>
+            You do not have to choose perfectly. Start with what feels most true today.
+        </p>
+
+        <div class="pathway-grid">
+            <!-- Pathway One -->
+            <div class="pathway-card">
+                <span class="pathway-label">Pathway One &mdash; Immediate Relief</span>
+                <span class="pathway-eyebrow">Today I Need&hellip;</span>
+                <h3 class="pathway-hook">To make one overwhelming task feel doable again.</h3>
+                <p>Choose this when you know what needs to be done, but the task feels unusually heavy, scattered, emotionally loaded, or difficult to begin.</p>
+                <p>This resource is designed to help you reduce the weight of one real task, find a believable starting point, and create enough movement to act without forcing yourself through it.</p>
+                <div class="resource-box">
+                    <h4>The Loaded Task Reset Method</h4>
+                    <p>A five-minute method for making one overloaded task easier to begin</p>
+                </div>
+                <p class="lead-in">This may be the better starting point when:</p>
+                <ul class="pathway-list">
+                    <li>you keep avoiding one important task</li>
+                    <li>your brain is jumping between too many steps</li>
+                    <li>you feel frozen even though you understand what needs to happen</li>
+                    <li>the task has accumulated pressure, dread, guilt, or urgency</li>
+                    <li>you need something practical you can use today</li>
+                </ul>
+                <a href="BWW_Loaded_Task_Reset.pdf"
+                   class="cta-button"
+                   target="_blank"
+                   data-bww-action="loaded_task_reset_request"
+                   data-bww-pathway="loaded_task_reset">
+                    Send Me the Loaded Task Reset
+                </a>
+            </div>
+
+            <!-- Pathway Two -->
+            <div class="pathway-card">
+                <span class="pathway-label">Pathway Two &mdash; Pattern Clarity</span>
+                <span class="pathway-eyebrow">I Keep Noticing&hellip;</span>
+                <h3 class="pathway-hook">The same pressure keeps showing up in different ways.</h3>
+                <p>Choose this when the problem is not limited to one task.</p>
+                <p>You may keep noticing the same urgency, overthinking, overfunctioning, inconsistency, inability to switch off, or pressure-driven decisions&mdash;even after trying new tools, schedules, boundaries, or systems.</p>
+                <p>This resource is designed to help you identify the founder pattern beneath the repeated struggle and determine what may actually need to change.</p>
+                <div class="resource-box">
+                    <h4>The Founder Pressure Pattern Check</h4>
+                    <p>A short self-check for identifying the pattern shaping how you operate under business pressure</p>
+                </div>
+                <p class="lead-in">This may be the better starting point when:</p>
+                <ul class="pathway-list">
+                    <li>the same problem keeps returning in different forms</li>
+                    <li>you understand the strategy but still cannot follow it consistently</li>
+                    <li>slowing down makes you feel unsafe, guilty, or behind</li>
+                    <li>you repeatedly take work back after delegating it</li>
+                    <li>quiet periods cause your brain to predict something is wrong</li>
+                    <li>the business continues occupying your mind when you are technically off</li>
+                    <li>you are unsure whether the real issue is capacity, behavior, boundaries, decision-making, or the business system itself</li>
+                </ul>
+                <a href="BWW_Founder_Pressure_Pattern_Reflection.pdf"
+                   class="cta-button"
+                   target="_blank"
+                   data-bww-action="founder_pressure_pattern_request"
+                   data-bww-pathway="founder_pressure_pattern_check">
+                    Show Me My Founder Pattern
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: WHAT HAPPENS NEXT -->
+    <section id="next" class="fade-in">
+        <h2 class="section-title">What happens after you choose?</h2>
+        <div class="steps-grid">
+            <div class="step">
+                <span class="step-num">1</span>
+                <h3>Choose what matches today.</h3>
+                <p>Select the immediate task-reset pathway or the repeated-pattern pathway.</p>
+            </div>
+            <div class="step">
+                <span class="step-num">2</span>
+                <h3>Receive something you can actually use.</h3>
+                <p>You will receive a practical resource designed to create one meaningful shift&mdash;not an overwhelming course, a pile of information, or a disguised sales pitch.</p>
+            </div>
+            <div class="step">
+                <span class="step-num">3</span>
+                <h3>Notice what changes.</h3>
+                <p>The resource will help you create a small piece of internal proof: a task becomes easier to approach, a pattern becomes clearer, or a different next move becomes possible.</p>
+            </div>
+            <div class="step">
+                <span class="step-num">4</span>
+                <h3>Decide whether you need anything deeper.</h3>
+                <p>You may stop after using the resource. There is no pressure to continue. When the issue requires individualized pattern analysis, business context, feedback, adaptation, or sustained support, you will have the option to learn about Reset &amp; Rise or request a complimentary fit conversation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: BWW PHILOSOPHY -->
+    <section id="philosophy" class="fade-in divider-top">
+        <h2 class="section-title">Sustainable success requires more than a better schedule.</h2>
+        <div class="philosophy-content">
+            <p class="phi-lead">Most founders and business owners do not need another person telling them to work harder, wake up earlier, become more disciplined, or download another productivity system.</p>
+            <p class="phi-transition">The challenge is often more layered.</p>
+            <p class="phi-alt-left">Your <span class="highlight">brain</span> may be trying to protect the business by scanning for problems, predicting outcomes, holding every open loop, and reacting before all the facts arrive.</p>
+            <p class="phi-alt-right">Your <span class="highlight">body</span> may be carrying the pace, uncertainty, responsibility, and unresolved pressure long after the workday is technically over.</p>
+            <p class="phi-alt-left">Your <span class="highlight">habits</span> may have been built during a period when doing everything yourself was necessary.</p>
+            <p class="phi-alt-right">Your <span class="highlight">business systems</span> may still depend on a version of you who had fewer clients, fewer team members, fewer responsibilities, or a higher tolerance for constantly being available.</p>
+            <p class="phi-transition">Beecoming Whole Works works at the intersection of these layers.</p>
+            <div class="philosophy-triplet">
+                <div>Optimize the brain and body.</div>
+                <div>Strengthen the way the business operates.</div>
+                <div>Create success that no longer requires losing yourself to sustain it.</div>
+            </div>
+            <p class="phi-close">The goal is not to care less about your business.</p>
+            <p class="phi-close">The goal is to think more clearly, operate more intentionally, build systems that need less constant intervention, protect your health, and become more available for the <span class="highlight">life</span> your business was meant to support.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 6: ABOUT NOELLE -->
+    <section id="about" class="fade-in divider-top">
+        <h2 class="section-title">A whole-human approach to founder performance and sustainable growth</h2>
+        <div class="about-grid">
+            <div class="about-photo"><img src="https://assets.cdn.filesafe.space/LroS441rLfF4CILbNn5o/media/6a71d5ea670a4ee783c246d7.jpeg" alt="Noelle Friedman, founder of Beecoming Whole Works" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;"></div>
+            <div class="about-text">
+                <p>I'm Noelle Friedman, a serial entrepreneur, behavior analyst, and founder of Beecoming Whole Works.</p>
+                <p>I understand the difference between knowing what should change and being able to create that change inside a real business, a real body, a real schedule, and a real life.</p>
+                <p>My work combines behavior systems, brain-and-body optimization, practical business application, identity-level change, and lived founder experience.</p>
+                <p>We do not look at your business strategy in isolation.</p>
+                <p>We examine how your decisions, patterns, body, environment, boundaries, team systems, workload, and way of operating affect one another.</p>
+                <p>The purpose is not to create temporary motivation.</p>
+                <p>It is to create changes you can live, repeat, trust, and sustain.</p>
+                <div class="about-signature">
+                    Noelle Friedman, M.S., BCBA
+                    <span>Founder, Beecoming Whole Works</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: RESET & RISE -->
+    <section id="reset-rise" class="fade-in">
+        <div class="reset-rise-inner">
+            <h2 class="sr-only">Reset &amp; Rise</h2>
+            <span class="eyebrow">When a General Tool Is Not Enough</span>
+            <p>Sometimes the problem is not needing another tool.</p>
+            <p>Sometimes it is having someone help you see and change the patterns that are difficult to see while you are still operating inside them.</p>
+            <p>The free resources on this page are designed to provide real standalone value. They can help you approach one loaded task differently or recognize one operating pattern more clearly.</p>
+            <p>But a general resource cannot fully account for:</p>
+            <ul class="reset-rise-cant">
+                <li>your business model</li>
+                <li>your leadership responsibilities</li>
+                <li>your decision patterns</li>
+                <li>your current capacity</li>
+                <li>your health and energy</li>
+                <li>your team dynamics</li>
+                <li>your history with urgency, overfunctioning, or survival-based success</li>
+                <li>or the systems currently keeping the business dependent on you</li>
+            </ul>
+            <p>That is where individualized work becomes more valuable.</p>
+
+            <h3 class="rr-title">Reset &amp; Rise</h3>
+            <p>Reset &amp; Rise is my private 90-day <span class="emph">founder transformation</span> experience for founders and business owners who want to optimize how their brain and body function under pressure, change the patterns shaping how they operate, and build a business that creates more freedom instead of requiring more of them.</p>
+            <p class="lead-in spaced">Together, we work toward:</p>
+            <ul class="reset-rise-list">
+                <li>steadier energy and clearer thinking</li>
+                <li>less pressure-driven decision-making</li>
+                <li>more consistent follow-through</li>
+                <li>stronger boundaries and operating standards</li>
+                <li>business systems that reduce unnecessary dependence on you</li>
+                <li>a more sustainable work rhythm</li>
+                <li>greater capacity to protect your health and enjoy your life</li>
+                <li>success that feels more livable from the inside</li>
+            </ul>
+            <p>Reset &amp; Rise is not therapy, medical treatment, or generic business consulting.</p>
+            <p>It is individualized founder support integrating behavior change, brain-and-body optimization, practical systems, and sustainable implementation.</p>
+            <!-- MISSING CLIENT INFORMATION: Reset & Rise information-page URL not yet provided.
+                 Per Blueprint Section 3 (Button: Explore Reset & Rise) this must route to "the
+                 Reset & Rise information page or approved program-information section" — it must
+                 NOT point to the Calendly scheduling link. Replace href="#pending-reset-rise-info"
+                 below with the approved destination, then remove data-status="pending-approval"
+                 and add data-append-utm="true" once confirmed. -->
+            <a href="#pending-reset-rise-info"
+               class="cta-button"
+               data-bww-action="reset_rise_explore"
+               data-status="pending-approval"
+               aria-disabled="true"
+               title="Coming soon — Reset &amp; Rise information page link pending client approval">
+                Explore Reset &amp; Rise
+            </a>
+        </div>
+    </section>
+
+    <!-- SECTION 8: COMPLIMENTARY FIT CONVERSATION -->
+    <section id="consult" class="fade-in divider-top">
+        <h2 class="section-title">Not sure whether you need a resource or deeper support?</h2>
+        <div class="consult-box">
+            <p>You do not need to diagnose the problem or know exactly which type of support you need before speaking with me.</p>
+            <p class="lead-in">A complimentary fit conversation is an opportunity to:</p>
+            <ul class="consult-list">
+                <li>share what has been happening</li>
+                <li>clarify what feels hardest to change</li>
+                <li>identify whether the primary issue involves a repeated founder pattern, capacity, behavior, boundaries, workload, or the way the business currently operates</li>
+                <li>determine whether Reset &amp; Rise or another next step is appropriate</li>
+            </ul>
+            <p>There is no pressure to enroll.</p>
+            <p>The purpose of the conversation is to create clarity and determine whether there is a genuine fit.</p>
+            <a href="https://calendly.com/beecomingwholeworks/strategy-call"
+               class="cta-button"
+               data-bww-action="consultation_request"
+               data-append-utm="true">
+                Request a Complimentary Fit Conversation
+            </a>
+            <p class="consult-note">You will be taken to a short scheduling page to choose an available time.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 9: FINAL AGENCY-BASED CHOICE -->
+    <section id="final" class="fade-in divider-top">
+        <div class="final-inner">
+            <h2 class="section-title">Wherever you begin is enough.</h2>
+            <p>Whether you choose one free resource or decide you would like individualized support, the goal is the same:</p>
+            <div class="final-bold">Build a business that no longer requires losing yourself to sustain it.</div>
+            <div class="final-buttons">
+                <a href="BWW_Loaded_Task_Reset.pdf"
+                   class="cta-button"
+                   target="_blank"
+                   data-bww-action="loaded_task_reset_request"
+                   data-bww-pathway="loaded_task_reset">
+                    Start With the Loaded Task Reset
+                </a>
+                <a href="BWW_Founder_Pressure_Pattern_Reflection.pdf"
+                   class="cta-button outline"
+                   target="_blank"
+                   data-bww-action="founder_pressure_pattern_request"
+                   data-bww-pathway="founder_pressure_pattern_check">
+                    Start With the Founder Pressure Pattern Check
+                </a>
+                <!-- MISSING CLIENT INFORMATION: same pending Reset & Rise info-page URL as
+                     Section 7 — see note above. Do not point this to Calendly. -->
+                <a href="#pending-reset-rise-info"
+                   class="cta-button outline"
+                   data-bww-action="reset_rise_explore"
+                   data-status="pending-approval"
+                   aria-disabled="true"
+                   title="Coming soon — Reset &amp; Rise information page link pending client approval">
+                    Explore Reset &amp; Rise
+                </a>
+            </div>
+            <p class="final-note">You can begin with one resource, explore individualized support, or simply leave with a clearer understanding of what may be happening. There is no pressure to choose more than what feels useful today.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 10: FOOTER -->
+    <footer id="footer">
+        <span class="footer-logo">BEEcoming Whole Works</span>
+        <p class="footer-tagline">Founder brain-and-body optimization, behavior systems, and sustainable business transformation</p>
+        <p class="footer-disclaimer">
+            Beecoming Whole Works provides coaching, education, behavior-change support, and business-application tools. Services and resources are not psychotherapy, medical treatment, crisis support, or a substitute for licensed healthcare. Individual outcomes vary, and no specific business, financial, or health result is guaranteed.
+        </p>
+        <p class="footer-links">
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms</a> |
+            <a href="mailto:beecomingwholeworks@gmail.com">Contact</a> |
+            <a href="https://www.instagram.com/noellefriedmanbeecomingwhole" target="_blank" rel="noopener">Instagram</a>
+        </p>
+        <p class="footer-copyright">&copy; 2026 Beecoming Whole Works. All rights reserved.</p>
+    </footer>
+
+    <script>
+        /* ------------------------------------------------------------------
+           TRACKING SCAFFOLDING — NOT YET CONNECTED
+           This pushes structured events to window.dataLayer and dispatches a
+           matching "bww:track" DOM event whenever a [data-bww-action] element
+           is clicked. No GA4 stream ID, Meta Pixel ID, or ManyChat tags are
+           wired up here — those still need to be supplied and connected by
+           whoever owns analytics/ManyChat for this account.
+           ------------------------------------------------------------------ */
+        window.dataLayer = window.dataLayer || [];
+
+        const BWW_EVENT_MAP = {
+            loaded_task_reset_request: 'bww_loaded_task_reset_selected',
+            founder_pressure_pattern_request: 'bww_founder_pattern_selected',
+            reset_rise_explore: 'bww_reset_rise_explored',
+            consultation_request: 'bww_consultation_requested'
+        };
+
+        function bwwTrack(action, detail) {
+            const payload = Object.assign(
+                { event: BWW_EVENT_MAP[action] || action, bww_action: action },
+                detail || {}
+            );
+            window.dataLayer.push(payload);
+            document.dispatchEvent(new CustomEvent('bww:track', { detail: payload }));
+        }
+
+        document.querySelectorAll('[data-bww-action]').forEach(el => {
+            el.addEventListener('click', () => {
+                bwwTrack(el.getAttribute('data-bww-action'), {
+                    bww_pathway: el.getAttribute('data-bww-pathway') || null,
+                    bww_status: el.getAttribute('data-status') || 'confirmed'
+                });
+            });
+        });
+
+        /* ------------------------------------------------------------------
+           UTM PRESERVATION
+           Captures utm_source/medium/campaign/term/content from the landing
+           URL and appends them only to links explicitly flagged
+           data-append-utm="true" (i.e. destinations that are actually
+           confirmed). Pending "#pending-..." anchors are left untouched
+           since they are not real outbound destinations yet.
+           ------------------------------------------------------------------ */
+        (function preserveUtm() {
+            const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+            const params = new URLSearchParams(window.location.search);
+            const utm = {};
+            UTM_KEYS.forEach(key => { if (params.has(key)) utm[key] = params.get(key); });
+            if (Object.keys(utm).length === 0) return;
+
+            try { sessionStorage.setItem('bww_utm', JSON.stringify(utm)); } catch (e) { /* storage unavailable */ }
+
+            document.querySelectorAll('[data-append-utm="true"]').forEach(link => {
+                try {
+                    const url = new URL(link.href, window.location.origin);
+                    Object.entries(utm).forEach(([key, value]) => url.searchParams.set(key, value));
+                    link.href = url.toString();
+                } catch (e) { /* leave link untouched if URL parsing fails */ }
+            });
+        })();
+
+        const header = document.querySelector('header');
+        const setHeaderShadow = () => {
+            header.style.boxShadow = window.scrollY > 12 ? '0 4px 20px rgba(92,77,38,0.08)' : 'none';
+        };
+        setHeaderShadow();
+        window.addEventListener('scroll', setHeaderShadow, { passive: true });
+
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observerOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        fadeElements.forEach(el => observer.observe(el));
+
+        document.querySelectorAll('[data-status="pending-approval"]').forEach(el => {
+            el.addEventListener('click', e => e.preventDefault());
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.length > 1) {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navUl = document.querySelector('nav ul');
+        menuToggle.addEventListener('click', () => {
+            const isOpen = navUl.classList.toggle('nav-open');
+            menuToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+        document.querySelectorAll('nav ul a').forEach(link => {
+            link.addEventListener('click', () => {
+                navUl.classList.remove('nav-open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
+</body>
+</html>
